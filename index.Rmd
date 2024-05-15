@@ -120,7 +120,7 @@ Describe why you included the table and what information it reveals
 ```{r, echo=FALSE}
 # Source the SummaryInfo.R script
 
-source("SummaryInfo.R")
+source("./SummaryInfo.R")
 
 cat("Total number of each type of crime:\n")
 print(crime_counts)
