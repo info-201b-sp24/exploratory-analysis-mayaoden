@@ -47,6 +47,7 @@ most_frequent_primary_offense <- crime_data %>%
 #5. Hour period with the most reports of crime
 
 crime_data$Occurred.Time <- as.POSIXct(crime_data$Occurred.Time, format="%H:%M:%S")
+
 hour_with_most_reports <- crime_data %>%
   group_by(hour = format(Occurred.Time, "%H")) %>%
   summarise(total_reports = n()) %>%
