@@ -128,4 +128,3 @@ get_summary_info <- function(crime_data) {
 summary_info <- get_summary_info(crime_data)
 summary_info
 
-# Aggregrate 

@@ -117,33 +117,25 @@ Include a table of aggregate information
 
 Describe why you included the table and what information it reveals
 
-``` {r source("./SummaryInfo.R")}
-```
+```{r, echo=FALSE}
+# Source the SummaryInfo.R script
+source("SummaryInfo.R")
 
-``` {r}
 cat("Total number of each type of crime:\n")
-print(crime_counts)
-cat("\nTotal number of crimes committed:", total_crimes_committed)
-```
+print(Total_Number_of_Crime_Types)
+cat("\nTotal number of crimes committed:", Total_Crimes_Committed)
 
-``` {r}
 cat("\nPrecinct with the highest reported number of crimes:\n")
-print(precinct_max_crime)
-```
+print(Precinct_with_Highest_Crime_Count)
 
-``` {r}
 cat("\nMost frequent subcategory of crime:\n")
-print(most_frequent_subcategory)
-```
+print(Most_Frequent_Subcategory_of_Crime)
 
-``` {r}
 cat("\nMost frequent primary offense:\n")
-print(most_frequent_primary_offense)
-```
+print(Most_Frequent_Primary_Offense)
 
-``` {r}
 cat("\nHour period with the most reports of crime:\n")
-print(hour_with_most_reports)
+print(Hour_with_Most_Reports_of_Crime)
 ```
 
 
