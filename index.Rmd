@@ -118,15 +118,11 @@ Include a table of aggregate information
 Describe why you included the table and what information it reveals
 
 ### Chart 1
-
-Include a chart
-
-Describe why you chose this chart and what information it reveals
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r Chart1_maya, echo = FALSE, warning = FALSE, message = FALSE, results='hide', fig.keep = 'last', fig.align = 'center'}
+source("./Chart1_maya.R") #, local = knitr::knit_global())
 ```
+
+I chose to create a figure that visualizes the crime proportions in police beats because it provides insights into the geographical distribution of crimes in Seattle. This figure consists of four smaller graphs because during the years which this dataset spans, 1975-2018, the police beats have been reconfigured three times. Each graph in the larger figure corresponded to one of these beats. Thus, this figure also depicts geographic changes in crime rates over time as well.
 
 ### Chart 2
 
