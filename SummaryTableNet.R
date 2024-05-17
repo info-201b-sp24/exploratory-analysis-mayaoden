@@ -1,42 +1,26 @@
-#this file calculates the table for aggregate crime data
+# Load libraries
+library(dplyr)
+library(tidyr)
 
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(tidyr))
-
+# Read the data
 crime_data <- read.csv("crime_data.csv")
 
-#function to calculate overall crime rate
-calculate_overall_crime_rate <- function(data) {
-  data %>%
-    group_by(Year) %>%
-    summarise(Overall_Crime_Count = n()) %>%
-    arrange(Year)
-}
-
-#data for all years
+# Process data and calculate summary table
 summary_table <- crime_data %>%
-  mutate(Occurred.Date = as.Date(Occurred.Date, format = "%m/%d/%Y"),
-         Year = as.numeric(format(Occurred.Date, "%Y"))) %>%
-  group_by(Year, Primary.Offense.Description) %>%
-  summarise(Count = n(), .groups = 'drop') %>%
-  spread(key = Primary.Offense.Description, value = Count, fill = 0) %>%
-  arrange(Year) %>%
-  mutate(Overall_Crime_Count = rowSums(across(where(is.numeric)))) %>%
-  select(Year, Overall_Crime_Count, everything()) %>%
-  rename_with(~gsub("\\.", " ", .), everything())
+  mutate(Year = as.numeric(format(as.Date(Occurred.Date, "%m/%d/%Y"), "%Y"))) %>%
+  count(Year, Primary.Offense.Description) %>%
+  pivot_wider(names_from = Primary.Offense.Description, values_from = n, values_fill = 0) %>%
+  mutate(
+    # Calculate overall crime count
+    Overall_Crime_Count = rowSums(across(where(is.numeric)))
+  ) %>%
+  
 
-#data for years after 2011
-summary_table_after_2011 <- crime_data %>%
-  mutate(Occurred.Date = as.Date(Occurred.Date, format = "%m/%d/%Y"),
-         Year = as.numeric(format(Occurred.Date, "%Y"))) %>%
-  filter(Year >= 2011) %>%
-  group_by(Year, Primary.Offense.Description) %>%
-  summarise(Count = n(), .groups = 'drop') %>%
-  spread(key = Primary.Offense.Description, value = Count, fill = 0) %>%
-  arrange(Year) %>%
-  mutate(Overall_Crime_Count = rowSums(across(where(is.numeric)))) %>%
   select(Year, Overall_Crime_Count, everything()) %>%
-  rename_with(~gsub("\\.", " ", .), everything())
+  rename_all(~gsub("\\.", " ", .)) %>%
+  select(Year, Overall_Crime_Count, everything()) %>% # Keep Year and Overall_Crime_Count columns at the beginning
+  select(1:2, order(colnames(.))) # Reorganize columns alphabetically starting from the third column
 
-#print tables
+# Print the summary table
 print(summary_table)
+
