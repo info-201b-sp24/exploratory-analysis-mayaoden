@@ -1,131 +1,50 @@
-# This is the .R file that calculates summary information to be included in your report
+# Summary Info:
+suppressPackageStartupMessages(library(dplyr))
 
-#Summary Info
-
+# Read crime data from a CSV file
 crime_data <- read.csv("Crime_Data.csv")
 
-library(dplyr)
+# Calculate total number of each type of crime and total crimes committed
+crime_counts <- crime_data %>% count(Primary.Offense.Description)
+total_crimes_committed <- sum(crime_counts$n)
 
-colnames(crime_data)
+# Precinct with the highest reported number of crimes
+precinct_max_crime <- crime_data %>% 
+  count(Precinct) %>% 
+  filter(n == max(n))
 
-#1. Total number of each type of crime + total number of crimes comitted
+# Most frequent subcategory of crime
+most_frequent_subcategory <- crime_data %>% 
+  count(Crime.Subcategory) %>% 
+  filter(n == max(n))
 
-crime_counts <- crime_data %>%
-  group_by(Primary.Offense.Description) %>%
-  summarise(total_crimes = n())
+# Most frequent primary offense
+most_frequent_primary_offense <- crime_data %>% 
+  count(Primary.Offense.Description) %>% 
+  filter(n == max(n))
 
-total_crimes_committed <- sum(crime_counts$total_crimes)
-
-crime_counts
-total_crimes_committed
-
-
-#2. The precinct that has the highest reported number of crimes
-
-precinct_max_crime <- crime_data %>%
-  group_by(Precinct) %>%
-  summarise(total_crimes = n()) %>%
-  arrange(desc(total_crimes)) %>%
-  slice(1)
-
-#3. Most frequent subcategory of crime
-
-most_frequent_subcategory <- crime_data %>%
-  group_by(Crime.Subcategory) %>%
-  summarise(total_crimes = n()) %>%
-  arrange(desc(total_crimes)) %>%
-  slice(1)
-
-#4. Most frequent primary offense
-
-most_frequent_primary_offense <- crime_data %>%
-  group_by(Primary.Offense.Description) %>%
-  summarise(total_crimes = n()) %>%
-  arrange(desc(total_crimes)) %>%
-  slice(1)
-
-#5. Hour period with the most reports of crime
-
-crime_data$Occurred.Time <- as.POSIXct(crime_data$Occurred.Time, format="%H:%M:%S")
-
+# Hour period with the most reports of crime
 hour_with_most_reports <- crime_data %>%
-  group_by(hour = format(Occurred.Time, "%H")) %>%
-  summarise(total_reports = n()) %>%
-  arrange(desc(total_reports)) %>%
-  slice(1)
+  mutate(Hour = format(as.POSIXct(Occurred.Time, format="%H:%M:%S"), "%H")) %>%
+  count(Hour) %>%
+  filter(n == max(n)) %>%
+  mutate(Hour_with_Most_Reports_of_Crime = paste(Hour, ":00-", Hour, ":59", sep=""))
 
-#Print out results:
-cat("Total number of each type of crime:\n")
-print(crime_counts)
-cat("\nTotal number of crimes committed:", total_crimes_committed)
+# Print summary information
+cat("Total Number of Crime Types: ")
+cat(nrow(crime_counts), "\n\n")
 
-cat("\n\nPrecinct with the highest reported number of crimes:\n")
-print(precinct_max_crime)
+cat("Total Number of Crimes Committed: ")
+cat(total_crimes_committed, "\n\n")
 
-cat("\nMost frequent subcategory of crime:\n")
-print(most_frequent_subcategory)
+cat("Precinct with the Highest Crime Count: ")
+cat(precinct_max_crime$Precinct, "\n\n")
 
-cat("\nMost frequent primary offense:\n")
-print(most_frequent_primary_offense)
+cat("Most Frequent Subcategory of Crime: ")
+cat(most_frequent_subcategory$Crime.Subcategory, "\n\n")
 
-cat("\nHour period with the most reports of crime:\n")
-print(hour_with_most_reports)
+cat("Most Frequent Primary Offense: ")
+cat(most_frequent_primary_offense$Primary.Offense.Description, "\n\n")
 
-
-
-#Summary Script:
-# A function that takes in a dataset and returns a list of summary information:
-get_summary_info <- function(crime_data) {
-  # Total number of each type of crime
-  crime_counts <- crime_data %>%
-    group_by(Primary.Offense.Description) %>%
-    summarise(total_crimes = n())
-  total_crimes_committed <- sum(crime_counts$total_crimes)
-  
-  # Precinct with the highest reported number of crimes
-  precinct_max_crime <- crime_data %>%
-    group_by(Precinct) %>%
-    summarise(total_crimes = n()) %>%
-    arrange(desc(total_crimes)) %>%
-    slice(1)
-  
-  # Most frequent subcategory of crime
-  most_frequent_subcategory <- crime_data %>%
-    group_by(Crime.Subcategory) %>%
-    summarise(total_crimes = n()) %>%
-    arrange(desc(total_crimes)) %>%
-    slice(1)
-  
-  # Most frequent primary offense
-  most_frequent_primary_offense <- crime_data %>%
-    group_by(Primary.Offense.Description) %>%
-    summarise(total_crimes = n()) %>%
-    arrange(desc(total_crimes)) %>%
-    slice(1)
-  
-  # Hour period with the most reports of crime
-  crime_data$Occurred.Time <- as.POSIXct(crime_data$Occurred.Time, format="%H:%M:%S")
-  hour_with_most_reports <- crime_data %>%
-    group_by(hour = format(Occurred.Time, "%H")) %>%
-    summarise(total_reports = n()) %>%
-    arrange(desc(total_reports)) %>%
-    slice(1)
-  
-  
-  # Constructing the summary list
-  summary_info <- list(
-    Total_Number_of_Crime_Types = length(unique(crime_data$Primary.Offense.Description)),
-    Total_Crimes_Committed = total_crimes_committed,
-    Precinct_with_Highest_Crime_Count = as.character(precinct_max_crime$Precinct),
-    Most_Frequent_Subcategory_of_Crime = as.character(most_frequent_subcategory$Crime.Subcategory),
-    Most_Frequent_Primary_Offense = as.character(most_frequent_primary_offense$Primary.Offense.Description),
-    Hour_with_Most_Reports_of_Crime = paste(hour_with_most_reports$hour, ":00-", hour_with_most_reports$hour, ":59", sep="")
-  )
-  
-  return(summary_info)
-}
-
-# Usage:
-summary_info <- get_summary_info(crime_data)
-summary_info
-
+cat("Hour with Most Reports of Crime: ")
+cat(hour_with_most_reports$Hour_with_Most_Reports_of_Crime, "\n")
