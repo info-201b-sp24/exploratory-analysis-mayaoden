@@ -143,9 +143,11 @@ I chose to create a figure that visualizes the crime proportions in police beats
 
 ### Chart 2
 
-Include a chart
+```{r Chart1_maya, echo = FALSE, warning = FALSE, message = FALSE}
+source("./Eda Gokdogan Chart 2 .R") #, local = knitr::knit_global())
+```
 
-Describe why you chose this chart and what information it reveals
+I chose to create this figure because this figure not only shows the major crime subcategories of crimes occurred in the Seattle between 1973-2018, but also provides information about what types of crimes happened in which seasons. This figure reveals information about the highest category of the crime in Seattle  and reveals that the highest crime happened in car prowls in all seasons. Furthermore, the graph provides information about which season highest crime occurred in Seattle. According to the graph, spring was the highest season that the crime has occurred.
 
 ### Chart 3
 
