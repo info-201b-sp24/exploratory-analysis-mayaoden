@@ -591,8 +591,17 @@ conclusions.</p></li>
 </ol>
 <div id="summary-information" class="section level3">
 <h3>Summary Information</h3>
-<p>Within the calculated values we found that the data . . . to
-finish</p>
+<p>Within the calculated values we found that the data revealed specific
+trends regarding the occurrence of crime, and its trends over time.
+Moreover, specifically within this, we were prompted by larger
+description statistics that could be used to encapsulate trends present
+within the data. The total number of crime types, highest crime
+precinct, most frequent subcategory, etc works to provide transparency
+about many of the trends of crime in Seattle. However it is critical to
+recognize this data presents bias in many of the ways it functions. From
+only representing reported crimes, and neglecting to mention the nature
+and circumstance surrounding crimes committed, this data is
+incomplete.</p>
 <pre><code>## Total Number of Crime Types: 144 
 ## 
 ## Total Number of Crimes Committed: 481376 
@@ -607,9 +616,28 @@ finish</p>
 </div>
 <div id="table" class="section level3">
 <h3>Table</h3>
-<p>Include a table of aggregate information</p>
-<p>Describe why you included the table and what information it
-reveals</p>
+<p>This table describes overall trends in crimes committed in Seattle,
+beginning in 1908. This provides a net summary of the rates of crime,
+that is easily comprehensible. This was pertinent to share to increase
+familiarity with crime rates across Seattle, and begin to draw
+conclusions about its implications over time.</p>
+<pre><code>## # A tibble: 8 × 2
+##    Year Overall_Crime_Count
+##   &lt;dbl&gt;               &lt;int&gt;
+## 1  2011               41293
+## 2  2012               41000
+## 3  2013               45548
+## 4  2014               49309
+## 5  2015               47683
+## 6  2016               49197
+## 7  2017               50274
+## 8  2018               24843</code></pre>
+<p>This table provides a net comprehensive overview of each type of
+crime, and breaks each column down into specific descriptions of the
+crime. This allows people who are interested in finer details to further
+investigate the occurrence of specific crimes over time, while still
+viewing net statistics. Ultimately, this provides a more specific
+overview of the information provided in the table above.</p>
 <pre><code>## # A tibble: 45 × 146
 ##     Year Overall_Crime_Count `ADULT-VULNERABLE-FINANCIAL` ADULT-VULNERABLE-NEG…¹
 ##    &lt;dbl&gt;               &lt;dbl&gt;                        &lt;int&gt;                  &lt;int&gt;
@@ -630,17 +658,6 @@ reveals</p>
 ## #   `ARSON-VEHICLE` &lt;int&gt;, `ASSLT-AGG-BODYFORCE` &lt;int&gt;,
 ## #   `ASSLT-AGG-CHILD-BODYFORCE` &lt;int&gt;, `ASSLT-AGG-DV-BODYFORCE` &lt;int&gt;,
 ## #   `ASSLT-AGG-DV-GUN` &lt;int&gt;, `ASSLT-AGG-DV-WEAPON` &lt;int&gt;, …</code></pre>
-<pre><code>## # A tibble: 8 × 2
-##    Year Overall_Crime_Count
-##   &lt;dbl&gt;               &lt;int&gt;
-## 1  2011               41293
-## 2  2012               41000
-## 3  2013               45548
-## 4  2014               49309
-## 5  2015               47683
-## 6  2016               49197
-## 7  2017               50274
-## 8  2018               24843</code></pre>
 </div>
 <div id="chart-1" class="section level3">
 <h3>Chart 1</h3>

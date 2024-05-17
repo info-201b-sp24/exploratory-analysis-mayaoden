@@ -109,27 +109,29 @@ Keywords: crime reports within Seattle, crime offense, crime categories and desc
 
 ### Summary Information
 
-Within the calculated values we found that the data . . . to finish
+Within the calculated values we found that the data revealed specific trends regarding the occurrence of crime, and its trends over time. Moreover, specifically within this, we were prompted by larger description statistics that could be used to encapsulate trends present within the data. The total number of crime types, highest crime precinct, most frequent subcategory, etc works to provide transparency about many of the trends of crime in Seattle. However it is critical to recognize this data presents bias in many of the ways it functions. From only representing reported crimes, and neglecting to mention the nature and circumstance surrounding crimes committed, this data is incomplete.
+
+
 ```{r, echo=FALSE}
 source("./SummaryInfo.R")
 ```
 
 ### Table
 
-Include a table of aggregate information
 
-Describe why you included the table and what information it reveals
+This table describes overall trends in crimes committed in Seattle, beginning in 1908. This provides a net summary of the rates of crime, that is easily comprehensible. This was pertinent to share to increase familiarity with crime rates across Seattle, and begin to draw conclusions about its implications over time.
 
-  
+```{r, echo=FALSE}
+source("./SummaryTable.R")
+```
+
+
+
+This table provides a net comprehensive overview of each type of crime, and breaks each column down into specific descriptions of the crime. This allows people who are interested in finer details to further investigate the occurrence of specific crimes over time, while still viewing net statistics. Ultimately, this provides a more specific overview of the information provided in the table above.
 ```{r, echo=FALSE}
 source("./SummaryTableNet.R")
 ```
 
-
-  
-```{r, echo=FALSE}
-source("./SummaryTable.R")
-```
 
 
 ### Chart 1
