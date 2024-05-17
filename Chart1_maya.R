@@ -4,7 +4,10 @@ library(sf)
 library(gridExtra)
 library(grid)
 
-seattle_crime_dataset <- read.csv("~/Downloads/INFO201/seattle_crime_data.csv")
+seattle_crime_dataset <- read.csv("https://raw.githubusercontent.com/info-201b-sp24/exploratory-analysis-mayaoden/main/Crime_Data.csv")
+
+#/info201bf/exploratory-analysis-mayaoden
+#/Downloads/INFO201/seattle_crime_data.csv
 seattle_crime_dataset$Occurred.Date <- as.Date(seattle_crime_dataset$Occurred.Date, format = "%m/%d/%Y")
 
 merged_data_pre_2008 <- seattle_crime_dataset %>%
