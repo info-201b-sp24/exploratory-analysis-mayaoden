@@ -5,8 +5,6 @@ output: html_document
 
 ## Seattle Crime Trends from 1975-2018
 
-Give your project a concise, interesting title that summarizes the entirety of your project
-
 ### Authors
 
 Maya Odenheim (mayaoden@uw.edu)\
@@ -109,34 +107,27 @@ Keywords: crime reports within Seattle, crime offense, crime categories and desc
 
 ### Summary Information
 
-Within the calculated values we found that the data . . . to finish
+Within the calculated values we found that the data revealed specific trends regarding the occurrence of crime, and its trends over time. Moreover, specifically within this, we were prompted by larger description statistics that could be used to encapsulate trends present within the data. The total number of crime types, highest crime precinct, most frequent subcategory, etc works to provide transparency about many of the trends of crime in Seattle. However it is critical to recognize this data presents bias in many of the ways it functions. From only representing reported crimes, and neglecting to mention the nature and circumstance surrounding crimes committed, this data is incomplete.
+
+
+```{r, echo=FALSE}
+source("./SummaryInfo.R")
+```
 
 ### Table
 
-Include a table of aggregate information
 
-Describe why you included the table and what information it reveals
+This table describes overall trends in crimes committed in Seattle, beginning in 1908. This provides a net summary of the rates of crime, that is easily comprehensible. This was pertinent to share to increase familiarity with crime rates across Seattle, and begin to draw conclusions about its implications over time.
 
 ```{r, echo=FALSE}
-# Source the SummaryInfo.R script
+source("./SummaryTable.R")
+```
 
-source("./SummaryInfo.R")
 
-cat("Total number of each type of crime:\n")
-print(crime_counts)
-cat("\nTotal number of crimes committed:", total_crimes_committed)
 
-cat("\nPrecinct with the highest reported number of crimes:\n")
-print(precinct_max_crime)
-
-cat("\nMost frequent subcategory of crime:\n")
-print(most_frequent_subcategory)
-
-cat("\nMost frequent primary offense:\n")
-print(most_frequent_primary_offense)
-
-cat("\nHour period with the most reports of crime:\n")
-print(hour_with_most_reports)
+This table provides a net comprehensive overview of each type of crime, and breaks each column down into specific descriptions of the crime. This allows people who are interested in finer details to further investigate the occurrence of specific crimes over time, while still viewing net statistics. Ultimately, this provides a more specific overview of the information provided in the table above.
+```{r, echo=FALSE}
+source("./SummaryTableNet.R")
 ```
 
 
@@ -146,13 +137,15 @@ print(hour_with_most_reports)
 source("./Chart1_maya.R") #, local = knitr::knit_global())
 ```
 
-I chose to create a figure that visualizes the crime proportions in police beats because it provides insights into the geographical distribution of crimes in Seattle. This figure consists of four smaller graphs because during the years which this dataset spans, 1975-2018, the police beats have been reconfigured three times. Each graph in the larger figure corresponded to one of these beats. Thus, this figure also depicts geographic changes in crime rates over time as well.
+I chose to create a figure that visualizes the crime proportions in police beats because it provides insights into the geographical distribution of crimes in Seattle. This figure consists of four smaller graphs because during the years which this data set spans, 1975-2018, the police beats have been reconfigured three times. Each graph in the larger figure corresponded to one of these beats. Thus, this figure also depicts geographic changes in crime rates over time as well.
 
 ### Chart 2
 
-Include a chart
+```{r Chart2_Eda, echo = FALSE, warning = FALSE, message = FALSE}
+source ("~/Desktop/info201bf/exploratory-analysis-mayaoden/Eda Gokdogan Chart 2 .R") 
+```
 
-Describe why you chose this chart and what information it reveals
+I chose to create this figure because this figure not only shows the major crime subcategories of crimes occurred in the Seattle between 1973-2018, but also provides information about what types of crimes happened in which seasons. This figure reveals information about the highest category of the crime in Seattle  and reveals that the highest crime happened in car prowls in all seasons. Furthermore, the graph provides information about which season highest crime occurred in Seattle. According to the graph, spring was the highest season that the crime has occurred.
 
 ### Chart 3
 

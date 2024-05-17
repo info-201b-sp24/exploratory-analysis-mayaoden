@@ -4,7 +4,7 @@ library(sf)
 library(gridExtra)
 library(grid)
 
-seattle_crime_dataset <- read.csv("~/Downloads/INFO201/seattle_crime_data.csv")
+seattle_crime_dataset <- read.csv("Crime_data.csv")
 seattle_crime_dataset$Occurred.Date <- as.Date(seattle_crime_dataset$Occurred.Date, format = "%m/%d/%Y")
 
 merged_data_pre_2008 <- seattle_crime_dataset %>%
@@ -12,28 +12,28 @@ merged_data_pre_2008 <- seattle_crime_dataset %>%
   group_by(Beat) %>%
   summarise(total_crimes = n()) %>%
   mutate(prop_crimes = total_crimes / sum(total_crimes)) %>%
-  inner_join(st_read("~/Downloads/pre2008/Pre2008_Beats_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
+  inner_join(st_read("beat_shapefiles/Seattle_Police_Department_Pre_2008_Beats_WM_-403823685701893637/Pre2008_Beats_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
 
 merged_data_2008_2015 <- seattle_crime_dataset %>%
   filter(Occurred.Date >= "2008-01-01" & Occurred.Date < "2015-01-01") %>%
   group_by(Beat) %>%
   summarise(total_crimes = n()) %>%
   mutate(prop_crimes = total_crimes / sum(total_crimes)) %>%
-  inner_join(st_read("~/Downloads/2008_to_2015/Beats_2008_2015_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
+  inner_join(st_read("beat_shapefiles/Beats_2008_to_2015_-7708752543149594113/Beats_2008_2015_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
 
 merged_data_2015_2017 <- seattle_crime_dataset %>%
   filter(Occurred.Date >= "2015-01-01" & Occurred.Date < "2017-01-01") %>%
   group_by(Beat) %>%
   summarise(total_crimes = n()) %>%
   mutate(prop_crimes = total_crimes / sum(total_crimes)) %>%
-  inner_join(st_read("~/Downloads/2015_to_2017/Beats_2015_2017_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
+  inner_join(st_read("beat_shapefiles/Seattle_Police_Department_Beats_2015_to_2017_-6117309976598584571/Beats_2015_2017_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
 
 merged_data_post_2017 <- seattle_crime_dataset %>%
   filter(Occurred.Date >= "2017-01-01" & Occurred.Date < "2018-01-01") %>%
   group_by(Beat) %>%
   summarise(total_crimes = n()) %>%
   mutate(prop_crimes = total_crimes / sum(total_crimes)) %>%
-  inner_join(st_read("~/Downloads/post_2017/Beats_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
+  inner_join(st_read("beat_shapefiles/Current_Beats_6794773331836576823/Beats_WM.shp", quiet = TRUE), by = c('Beat' = 'beat'))
 
 plot_pre_2008 <- ggplot() +
   geom_sf(data = merged_data_pre_2008, aes(geometry = geometry, fill = prop_crimes)) +
