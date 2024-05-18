@@ -22,7 +22,7 @@ crime_subcategory_prop <- seattle_crime_dataset_filtered %>%
   mutate(prop = count / sum(count))
 
 # Create the stacked bar chart
-ggplot(crime_subcategory_prop, aes(x = factor(Year), y = prop, fill = Crime.Subcategory)) +
+plot <- ggplot(crime_subcategory_prop, aes(x = factor(Year), y = prop, fill = Crime.Subcategory)) +
   geom_bar(stat = "identity") +
   labs(title = "Proportion of Crime Subcategories (2000-2020)",
        x = "Year",
@@ -30,3 +30,6 @@ ggplot(crime_subcategory_prop, aes(x = factor(Year), y = prop, fill = Crime.Subc
        fill = "Crime Subcategory") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+print(plot)

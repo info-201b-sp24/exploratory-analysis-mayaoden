@@ -151,9 +151,10 @@ I chose to create this figure because this figure not only shows the major crime
 
 ### Chart 3
 
-Include a chart
 ```{r, echo=FALSE}
+
 source("./Thurainchart.R")
+
 ```
 
 The line chart above is included to visualize the overall trend of total crime counts in Seattle. The purpose of this chart is to provide an overview of how the crime levels have changed over the years and to identify any significant patterns or fluctuations in the crime rates during this period.
