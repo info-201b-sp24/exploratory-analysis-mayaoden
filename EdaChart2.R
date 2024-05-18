@@ -3,7 +3,7 @@
 rm(list=ls())  
 library(ggplot2)
 library(dplyr)
-crime_data <- read.csv("/Users/edagokdogan/Downloads/Crime_Data 2.csv")
+crime_data <- read.csv("Crime_Data.csv")
 # formatting the function and extracting the month in order to categorize them as seasons 
 crime_data$Occurred.Date <- as.character(crime_data$Occurred.Date)
 crime_data$Date <- as.Date(crime_data$Occurred.Date, tryFormats = c("%m/%d/%Y"))
