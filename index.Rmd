@@ -152,3 +152,6 @@ I chose to create this figure because this figure not only shows the major crime
 Include a chart
 
 Describe why you chose this chart and what information it reveals
+The line chart above is included to visualize the overall trend of total crime counts in Seattle. The purpose of this chart is to provide an overview of how the crime levels have changed over the years and to identify any significant patterns or fluctuations in the crime rates during this period.
+
+By examining the total crime counts over time, we can gain insights into the general crime trends in Seattle and assess whether there have been any notable increases or decreases in criminal activity. This information can be valuable for understanding the effectiveness of crime prevention strategies, allocating resources, and making informed decisions related to public safety.
