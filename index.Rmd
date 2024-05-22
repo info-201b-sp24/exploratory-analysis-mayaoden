@@ -151,7 +151,7 @@ I chose to create this figure because this figure not only shows the major crime
 
 ### Chart 3
 
-```{r, echo=FALSE}
+```{r, echo = FALSE, fig.keep = 'last', fig.align = 'center', message = FALSE, warning = FALSE}
 
 source("./chart3_maya.R")
 

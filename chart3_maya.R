@@ -22,7 +22,7 @@ num_of_crimes_reported_per_month <- seattle_crime_dataset %>%
 combined_table <- left_join(num_of_crimes_per_month, num_of_crimes_reported_per_month, by = "month")
 
 # Plotting
-ggplot() +
+plot <- ggplot() +
   geom_point(combined_table, mapping = aes(x = month, y = num_crimes, group = 1, color = "Number of Committed Crimes")) +
   geom_line(combined_table, mapping = aes(x = month, y = num_crimes, group = 1, color = "Number of Committed Crimes")) + 
   geom_point(combined_table, mapping = aes(x = month, y = num_reported_crimes, group = 1, color = "Number of Reported Crimes")) +
@@ -35,3 +35,5 @@ ggplot() +
         plot.title = element_text(hjust = 0.5, face = "bold"),
         legend.position = c(0.825, 0.92),
         legend.title = element_blank()) 
+
+plot(plot)
