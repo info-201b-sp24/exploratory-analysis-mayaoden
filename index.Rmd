@@ -153,10 +153,11 @@ I chose to create this figure because this figure not only shows the major crime
 
 ```{r, echo=FALSE}
 
-source("./Thurainchart.R")
+source("./chart3_maya.R")
 
 ```
 
-The line chart above is included to visualize the overall trend of total crime counts in Seattle. The purpose of this chart is to provide an overview of how the crime levels have changed over the years and to identify any significant patterns or fluctuations in the crime rates during this period.
+The above figure visualizes the number of crimes committed and reported per month over the years which this dataset spans. I chose this visualization because it effectively visualizes annual crimes trends, such as the number of committed crimes and reported crimes peaking during the summer months. Furthermore, by graphing both the number of committed crimes and the number of reported crimes, it allows us to see how these numbers track with one another. The figure seems to suggest that most crimes are committed and reported within the same month because the lines of both track very closely with one another, although additional analysis would need to take place in order to confirm this trend. 
 
-By examining the total crime counts over time, we can gain insights into the general crime trends in Seattle and assess whether there have been any notable increases or decreases in criminal activity. This information can be valuable for understanding the effectiveness of crime prevention strategies, allocating resources, and making informed decisions related to public safety.
+
+
